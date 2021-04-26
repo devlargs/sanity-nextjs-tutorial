@@ -21,7 +21,12 @@ export default function Home({ movie }) {
           </Col>
           {movie.map((movie) => (
             <Col key={movie.slug} md="4">
-              <CardItem title={movie.title} popularity={movie.popularity} />
+              <CardItem
+                title={movie.title}
+                popularity={movie.popularity}
+                image={movie.poster}
+                date={movie.releaseDate}
+              />
             </Col>
           ))}
         </Row>
