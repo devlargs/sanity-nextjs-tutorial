@@ -1,12 +1,13 @@
 import { Card } from "react-bootstrap";
 
-const CardItem = ({ title, popularity, image, date }) => {
+const CardItem = ({ title, popularity, image, date, director }) => {
+  console.log(director);
   return (
     <Card className={`fj-card`}>
       <div className="card-body-wrapper">
         <Card.Header className="d-flex flex-row">
           <img
-            src={"https://via.placeholder.com/150"}
+            src={director.image}
             className="rounded-circle mr-3"
             height="50px"
             width="50px"
@@ -14,7 +15,7 @@ const CardItem = ({ title, popularity, image, date }) => {
           />
           <div>
             <Card.Title className="font-weight-bold mb-1">
-              Placeholder Author
+              {director.name}
             </Card.Title>
             <Card.Text className="card-date">{date}</Card.Text>
           </div>

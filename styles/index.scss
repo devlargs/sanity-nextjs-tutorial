@@ -25,7 +25,7 @@ body {
 }
 
 .card.fj-card {
-  // padding-top: 50px;
+  padding-top: 50px;
   .card-body-wrapper {
     background-color: #fff;
     border-radius: 15px;
@@ -58,15 +58,16 @@ body {
     background-color: transparent;
     padding: 0px 0px 15px;
     img {
-      --size: 45px;
+      --size: 50px;
+      --widthsize: 45px;
       background-color: #fff;
       border: 1px solid #464646;
       border-radius: 50%;
-      // box-shadow: 2px 5px 25px rgba(0, 0, 0, .15);
-      // left: 10px;
-      // position: absolute;
+      box-shadow: 2px 5px 25px rgba(0, 0, 0, 0.15);
+      left: 10px;
+      position: absolute;
       top: calc(-1 * (var(--size) / 2));
-      width: var(--size);
+      width: var(--widthsize);
       height: var(--size);
     }
   }
@@ -103,10 +104,10 @@ body {
   &.fj-card-list {
     .card-body-wrapper {
       min-height: 180px;
-      // position: relative;
-      // z-index: 2;
-      // padding: 20px;
-      // padding-bottom: 40px;
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      padding-bottom: 40px;
     }
 
     .card-header {
@@ -204,7 +205,7 @@ body {
 
 .card-header {
   display: flex;
-  // justify-content: center;
+  justify-content: center;
   align-items: center;
 
   &-title {

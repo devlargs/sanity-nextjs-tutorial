@@ -6,6 +6,7 @@ import { getAllMovies } from "lib/api";
 import { Row, Col } from "react-bootstrap";
 
 export default function Home({ movie }) {
+  console.log(movie);
   return (
     <PageLayout>
       <div className="blog-detail-page">
@@ -26,6 +27,7 @@ export default function Home({ movie }) {
                 popularity={movie.popularity}
                 image={movie.poster}
                 date={movie.releaseDate}
+                director={movie.director}
               />
             </Col>
           ))}
