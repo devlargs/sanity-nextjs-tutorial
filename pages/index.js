@@ -27,7 +27,10 @@ export default function Home({ movie }) {
                 image={movie.poster}
                 date={movie.releaseDate}
                 director={movie.director}
-                slug={movie.slug}
+                link={{
+                  href: "/movie/[slug]",
+                  as: `/movie/${movie.slug}`,
+                }}
               />
             </Col>
           ))}
