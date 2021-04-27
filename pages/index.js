@@ -27,6 +27,7 @@ export default function Home({ movie }) {
                 image={movie.poster}
                 date={movie.releaseDate}
                 director={movie.director}
+                slug={movie.slug}
               />
             </Col>
           ))}

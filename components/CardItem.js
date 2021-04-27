@@ -1,6 +1,7 @@
 import { Card } from "react-bootstrap";
+import Link from "next/link";
 
-const CardItem = ({ title, popularity, image, date, director }) => {
+const CardItem = ({ title, popularity, image, date, director, slug }) => {
   return (
     <Card className={`fj-card`}>
       <div className="card-body-wrapper">
@@ -27,7 +28,9 @@ const CardItem = ({ title, popularity, image, date, director }) => {
           <Card.Text>Popularity: {popularity}</Card.Text>
         </Card.Body>
       </div>
-      <a className="card-button">Read More</a>
+      <Link href={`/movie/${slug}`}>
+        <a className="card-button">Read More</a>
+      </Link>
     </Card>
   );
 };
