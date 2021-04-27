@@ -40,11 +40,11 @@ export default function Home({ movie }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const movie = await getAllMovies();
   return {
     props: {
       movie,
     },
   };
-}
+};
