@@ -4,7 +4,6 @@ export default function MovieHeader({
   image,
   date,
   director,
-  overview,
 }) {
   return (
     <div className="movie-detail-header">
@@ -28,9 +27,7 @@ export default function MovieHeader({
         Popularity: {popularity}
       </p>
       <img className="img-fluid rounded" src={image} alt="TODO: provide alt" />
-      <p className="movie-overview mt-4">
-        <p>{overview}</p>
-      </p>
+      <p className="movie-overview mt-4"></p>
     </div>
   );
 }

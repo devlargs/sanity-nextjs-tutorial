@@ -2,6 +2,7 @@ import PageLayout from "components/PageLayout";
 import { getAllMovies, getMovieBySlug } from "lib/api";
 import { Row, Col } from "react-bootstrap";
 import MovieHeader from "components/MovieHeader";
+import MovieContent from "components/MovieContent";
 
 const MovieDetail = ({ movie }) => {
   console.log(movie);
@@ -15,8 +16,9 @@ const MovieDetail = ({ movie }) => {
             image={movie.poster}
             director={movie.director}
             date={movie.releaseDate}
-            overview={movie.overview}
           />
+          <hr />
+          <MovieContent content={movie.overview} />
         </Col>
       </Row>
     </PageLayout>
