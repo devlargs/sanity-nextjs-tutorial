@@ -1,19 +1,41 @@
 import PageLayout from "components/PageLayout";
-import { getMovieBySlug } from "lib/api";
-import { useRouter } from "next/router";
+import { getAllMovies, getMovieBySlug } from "lib/api";
+import { Row, Col } from "react-bootstrap";
+import MovieHeader from "components/MovieHeader";
 
-const MovieDetail = (movie) => {
+const MovieDetail = ({ movie }) => {
+  console.log(movie);
   return (
-    <PageLayout>
-      <h1>Hello! {movie?.slug} </h1>
+    <PageLayout className="movie-detail-page">
+      <Row>
+        <Col md={{ span: 10, offset: 1 }}>
+          <MovieHeader
+            title={movie.title}
+            popularity={movie.popularity}
+            image={movie.poster}
+            director={movie.director}
+            date={movie.releaseDate}
+            overview={movie.overview}
+          />
+        </Col>
+      </Row>
     </PageLayout>
   );
 };
 
-export const getServerSideProps = async ({ params }) => {
-  const movie = await getMovieBySlug(params.slug);
+export const getStaticProps = async ({ params }) => {
+  const movie = await getMovieBySlug(params?.slug);
   return {
     props: { movie },
+  };
+};
+
+export const getStaticPaths = async () => {
+  const movie = await getAllMovies();
+  const paths = movie.map((q) => ({ params: { slug: q.slug } }));
+  return {
+    paths,
+    fallback: false,
   };
 };
 
