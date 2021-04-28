@@ -8,7 +8,7 @@ import { Row, Col } from "react-bootstrap";
 export default function Home({ movie }) {
   return (
     <PageLayout>
-      <div className="blog-detail-page">
+      <div className="movie-detail-page">
         <Row>
           <Col md="8">
             <AuthorIntro />
@@ -27,6 +27,7 @@ export default function Home({ movie }) {
                 image={movie.poster}
                 date={movie.releaseDate}
                 director={movie.director}
+                overview={movie.overview}
                 link={{
                   href: "/movie/[slug]",
                   as: `/movie/${movie.slug}`,
