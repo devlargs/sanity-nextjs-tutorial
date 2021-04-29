@@ -1,5 +1,5 @@
 import PageLayout from "components/PageLayout";
-import { getAllMovies, getMovieBySlug } from "lib/api";
+import { getAllMovies, getMovieBySlug, urlFor } from "lib/api";
 import { Row, Col } from "react-bootstrap";
 import MovieHeader from "components/MovieHeader";
 import MovieContent from "components/MovieContent";
@@ -13,7 +13,7 @@ const MovieDetail = ({ movie }) => {
           <MovieHeader
             title={movie.title}
             popularity={movie.popularity}
-            image={movie.poster}
+            image={urlFor(movie.poster).height(700).url()}
             director={movie.director}
             date={movie.releaseDate}
           />
