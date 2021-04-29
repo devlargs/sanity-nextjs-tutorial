@@ -8,13 +8,13 @@ const AuthorIntro = () => {
         width={64}
         height={64}
         className="mr-3"
-        src="https://avatars1.githubusercontent.com/u/9482724?s=460&u=69a6acab13fd5547a4e316e496b573271077147f&v=4"
+        src="https://cdn.sanity.io/images/lxxzgggy/production/6b23941d03c97f73b07e654bd81f96e40ec858c0-540x405.jpg?h=300&fit=max"
         alt="Generic placeholder"
       />
       <Media.Body>
         <h5 className="font-weight-bold mb-0">Hello Friends,</h5>
         <p className="welcome-text">
-          My name is Filip Jerga and I am an experienced software engineer and
+          My name is Sharon Myōi and I am an experienced software engineer and
           freelance developer. and this is my blog page.
         </p>
       </Media.Body>

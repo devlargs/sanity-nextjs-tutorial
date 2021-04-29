@@ -229,6 +229,16 @@ body {
 .movie-image {
   margin-bottom: 10px;
   text-align: center;
+
+  &-left {
+    float: left;
+    margin-right: 30px;
+  }
+
+  &-right {
+    float: right;
+    margin-left: 30px;
+  }
 }
 .image-alt {
   margin-top: 3px;
@@ -238,6 +248,7 @@ body {
   font-size: 19px;
 
   .movie-detail-header {
+    text-align: center;
     .lead {
       font-size: 17px;
     }
