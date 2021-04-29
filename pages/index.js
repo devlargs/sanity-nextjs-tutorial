@@ -41,7 +41,16 @@ export default function Home({ movie }) {
               </Col>
             ) : (
               <Col md="10">
-                <CardListItem />
+                <CardListItem
+                  title={movie.title}
+                  popularity={movie.popularity}
+                  date={movie.releaseDate}
+                  director={movie.director}
+                  link={{
+                    href: "/movie/[slug]",
+                    as: `/movie/${movie.slug}`,
+                  }}
+                />
               </Col>
             )
           )}
