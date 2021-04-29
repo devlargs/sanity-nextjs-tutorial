@@ -1,6 +1,7 @@
 import { Card } from "react-bootstrap";
 import Link from "next/link";
 import { urlFor } from "lib/api";
+import dayjs from "dayjs";
 
 const CardItem = ({ title, popularity, image, date, director, link }) => {
   return (
@@ -10,15 +11,20 @@ const CardItem = ({ title, popularity, image, date, director, link }) => {
           <img
             src={director?.image || "https://via.placeholder.com/150"}
             className="rounded-circle mr-3"
-            height="50px"
-            width="50px"
             alt="avatar"
+            style={{
+              width: 80,
+              height: 80,
+              border: "3px solid #007bff",
+            }}
           />
           <div>
             <Card.Title className="font-weight-bold mb-1">
               {director?.name || "No Name"}
             </Card.Title>
-            <Card.Text className="card-date">{date}</Card.Text>
+            <Card.Text className="card-date">
+              Released: {dayjs(date).format("MMM DD, YYYY")}
+            </Card.Text>
           </div>
         </Card.Header>
         <div className="view overlay">
@@ -30,7 +36,7 @@ const CardItem = ({ title, popularity, image, date, director, link }) => {
         </div>
         <Card.Body>
           <Card.Title className="card-main-title">{title}</Card.Title>
-          <Card.Text>Popularity: {popularity}</Card.Text>
+          <Card.Text>Popularity: {Math.round(popularity)}%</Card.Text>
         </Card.Body>
       </div>
       {link && (

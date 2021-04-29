@@ -5,7 +5,6 @@ import MovieHeader from "components/MovieHeader";
 import MovieContent from "components/MovieContent";
 
 const MovieDetail = ({ movie }) => {
-  console.log(movie);
   return (
     <PageLayout className="movie-detail-page">
       <Row>
