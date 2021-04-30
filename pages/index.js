@@ -6,11 +6,15 @@ import FilteringMenu from "components/FilteringMenu";
 import PageLayout from "components/PageLayout";
 import { getAllMovies } from "lib/api";
 import { Row, Col } from "react-bootstrap";
+import { useGetMovies } from "action";
 
-export default function Home({ movie }) {
+export default function Home({ movie: initialData }) {
   const [filter, setFilter] = useState({
     view: { list: 0 },
   });
+
+  const { data: movie, error } = useGetMovies(initialData);
+
   return (
     <PageLayout>
       <div className="movie-detail-page">
