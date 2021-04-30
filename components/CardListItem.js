@@ -1,5 +1,6 @@
 import { Card } from "react-bootstrap";
 import Link from "next/link";
+import dayjs from "dayjs";
 
 const CardListItem = ({ title, popularity, date, director, link }) => {
   return (
@@ -17,12 +18,14 @@ const CardListItem = ({ title, popularity, date, director, link }) => {
             <Card.Title className="font-weight-bold mb-1">
               {director?.name}
             </Card.Title>
-            <Card.Text className="card-date">{date}</Card.Text>
+            <Card.Text className="card-date">
+              Released: {dayjs(date).format("MMM DD, YYYY")}
+            </Card.Text>
           </div>
         </Card.Header>
         <Card.Body>
           <Card.Title className="card-main-title">{title}</Card.Title>
-          <Card.Text>Popularity: {popularity}</Card.Text>
+          <Card.Text>Popularity: {Math.round(popularity)}%</Card.Text>
         </Card.Body>
       </div>
       {link && (

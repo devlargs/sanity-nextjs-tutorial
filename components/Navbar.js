@@ -6,7 +6,7 @@ const BlogNavbar = () => {
     <Navbar className="fj-navbar fj-nav-base" bg="transparent" expand="lg">
       <Navbar.Brand className="fj-navbar-brand">
         <Link href="/">
-          <a>Movie Data</a>
+          <a style={{ textDecoration: "none" }}>Mock Movie Database</a>
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -15,7 +15,12 @@ const BlogNavbar = () => {
           <Nav.Link
             as={() => (
               <Link href="/">
-                <a className="fj-navbar-item fj-navbar-link">Home</a>
+                <a
+                  className="fj-navbar-item fj-navbar-link"
+                  style={{ textDecoration: "none" }}
+                >
+                  Home
+                </a>
               </Link>
             )}
           />

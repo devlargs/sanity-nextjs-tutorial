@@ -9,4 +9,6 @@ import "styles/index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "highlight.js/styles/vs2015.css";
 
-export default ({ Component, pageProps }) => <Component {...pageProps} />;
+const App = ({ Component, pageProps }) => <Component {...pageProps} />;
+
+export default App;
