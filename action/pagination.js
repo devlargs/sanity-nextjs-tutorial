@@ -4,18 +4,19 @@ import CardItem from "components/CardItem";
 import CardListItem from "components/CardListItem";
 import { Col } from "react-bootstrap";
 
-export const useGetMoviesPages = ({ movies: initialData, filter }) => {
+export const useGetMoviesPages = ({ movies, filter }) => {
   return useSWRPages(
     "index-page",
     ({ offset, withSWR }) => {
-      const { data: movies } = withSWR(useGetMovies(initialData));
-      console.log(movies);
-      console.log("Here");
+      let initialData = !offset && movies;
+      const { data: paginateMovies } = withSWR(
+        useGetMovies({ offset }, initialData)
+      );
 
-      if (!movies) {
+      if (!paginateMovies) {
         return "Loading...";
       }
-      return movies.map((movie) =>
+      return paginateMovies.map((movie) =>
         !filter.view.list ? (
           <Col key={movie.slug} md="4">
             <CardItem
@@ -49,8 +50,11 @@ export const useGetMoviesPages = ({ movies: initialData, filter }) => {
     },
     //compute offset
     (SWR, index) => {
-      return 0;
+      if (SWR.data && SWR.data.length === 0) {
+        return null;
+      }
+      return (index + 1) * 3;
     },
-    []
+    [filter]
   );
 };
