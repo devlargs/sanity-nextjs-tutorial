@@ -3,9 +3,17 @@ import Link from "next/link";
 import { urlFor } from "lib/api";
 import dayjs from "dayjs";
 
-const CardItem = ({ title, popularity, image, date, director, link }) => {
+const CardItem = ({
+  title,
+  popularity,
+  image,
+  date,
+  director,
+  link,
+  mode = "normal",
+}) => {
   return (
-    <Card className={`fj-card`}>
+    <Card className={`fj-card ${mode}`}>
       <div className="card-body-wrapper">
         <Card.Header className="d-flex flex-row">
           <img
@@ -19,24 +27,52 @@ const CardItem = ({ title, popularity, image, date, director, link }) => {
             }}
           />
           <div>
-            <Card.Title className="font-weight-bold mb-1">
-              {director?.name || "No Name"}
-            </Card.Title>
-            <Card.Text className="card-date">
-              Released: {dayjs(date).format("MMM DD, YYYY")}
-            </Card.Text>
+            {mode === "placeholder" ? (
+              <>
+                <Card.Title className="font-weight-bold mb-1">
+                  Director Name
+                </Card.Title>
+                <Card.Text className="card-date">
+                  Released: MM/DD/YYYY
+                </Card.Text>
+              </>
+            ) : (
+              <>
+                <Card.Title className="font-weight-bold mb-1">
+                  {director?.name || "No Name"}
+                </Card.Title>
+                <Card.Text className="card-date">
+                  Released: {dayjs(date).format("MMM DD, YYYY")}
+                </Card.Text>
+              </>
+            )}
           </div>
         </Card.Header>
         <div className="view overlay">
-          <Card.Img
-            className="movie-image"
-            src={urlFor(image).height(700).crop("center").fit("clip").url()}
-            alt="Card image cap"
-          />
+          {mode === "placeholder" ? (
+            <div className="image-placeholder" />
+          ) : (
+            <Card.Img
+              className="movie-image"
+              src={urlFor(image).height(700).crop("center").fit("clip").url()}
+              alt="Card image cap"
+            />
+          )}
         </div>
         <Card.Body>
-          <Card.Title className="card-main-title">{title}</Card.Title>
-          <Card.Text>Popularity: {Math.round(popularity)}%</Card.Text>
+          {mode === "placeholder" ? (
+            <>
+              <Card.Title className="font-weight-bold mb-1">
+                Movie Title
+              </Card.Title>
+              <Card.Text className="card-date">Popularity</Card.Text>
+            </>
+          ) : (
+            <>
+              <Card.Title className="card-main-title">{title}</Card.Title>
+              <Card.Text>Popularity: {Math.round(popularity)}%</Card.Text>
+            </>
+          )}
         </Card.Body>
       </div>
       {link && (

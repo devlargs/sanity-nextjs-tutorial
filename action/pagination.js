@@ -2,9 +2,10 @@ import { useEffect } from "react";
 
 import { useSWRPages } from "swr";
 import { useGetMovies } from "action";
+import { Col } from "react-bootstrap";
 import CardItem from "components/CardItem";
 import CardListItem from "components/CardListItem";
-import { Col } from "react-bootstrap";
+import CardItemBlank from "components/CardItemBlank";
 
 export const useGetMoviesPages = ({ movies, filter }) => {
   useEffect(() => {
@@ -25,7 +26,13 @@ export const useGetMoviesPages = ({ movies, filter }) => {
       );
 
       if (!paginateMovies) {
-        return "Loading...";
+        return Array(3)
+          .fill(0)
+          .map((_, i) => (
+            <Col key={i} md="4">
+              <CardItemBlank />
+            </Col>
+          ));
       }
       return paginateMovies.map((movie) =>
         !filter.view.list ? (
