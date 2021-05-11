@@ -6,6 +6,7 @@ import { Col } from "react-bootstrap";
 import CardItem from "components/CardItem";
 import CardListItem from "components/CardListItem";
 import CardItemBlank from "components/CardItemBlank";
+import CardListItemBlank from "components/CardListItemBlank";
 
 export const useGetMoviesPages = ({ movies, filter }) => {
   useEffect(() => {
@@ -28,11 +29,17 @@ export const useGetMoviesPages = ({ movies, filter }) => {
       if (!paginateMovies) {
         return Array(3)
           .fill(0)
-          .map((_, i) => (
-            <Col key={i} md="4">
-              <CardItemBlank />
-            </Col>
-          ));
+          .map((_, i) =>
+            !filter.view.list ? (
+              <Col key={i} md="4">
+                <CardItemBlank />
+              </Col>
+            ) : (
+              <Col key={`${i}-list`} md="10">
+                <CardListItemBlank />
+              </Col>
+            )
+          );
       }
       return paginateMovies.map((movie) =>
         !filter.view.list ? (
