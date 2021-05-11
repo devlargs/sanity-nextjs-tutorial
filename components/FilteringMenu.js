@@ -1,15 +1,26 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const FONT_ICON = ["list", "border-all"];
+const LIST_VIEW_ICONS = ["list", "border-all"];
+const DATE_FILTERING_ICONS = ["sort-numeric-down", "sort-numeric-up"];
 
 const FilteringMenu = ({ onChange, filter }) => {
   return (
-    <FontAwesomeIcon
-      className="clickable hoverable"
-      size="2x"
-      icon={FONT_ICON[filter.view.list]}
-      onClick={() => onChange("view", { list: +!filter.view.list })}
-    />
+    <div className="filtering-menu mb-2">
+      <FontAwesomeIcon
+        className="clickable hoverable mr-3"
+        size="2x"
+        icon={LIST_VIEW_ICONS[filter.view.list]}
+        onClick={() => onChange("view", { list: +!filter.view.list })}
+      />
+      <FontAwesomeIcon
+        className="clickable hoverable "
+        size="2x"
+        icon={DATE_FILTERING_ICONS[filter.releaseDate.asc]}
+        onClick={() =>
+          onChange("releaseDate", { asc: +!filter.releaseDate.asc })
+        }
+      />
+    </div>
   );
 };
 

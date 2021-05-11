@@ -9,6 +9,7 @@ import { useGetMoviesPages } from "action/pagination";
 export default function Home({ movies }) {
   const [filter, setFilter] = useState({
     view: { list: 0 },
+    releaseDate: { asc: 0 },
   });
 
   const { pages, isLoadingMore, isReachingEnd, loadMore } = useGetMoviesPages({
