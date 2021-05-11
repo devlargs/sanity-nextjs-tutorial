@@ -46,7 +46,7 @@ export default function Home({ movies }) {
 }
 
 export const getStaticProps = async () => {
-  const movies = await getAllMovies({ offset: 0 });
+  const movies = await getAllMovies({ offset: 0, releaseDate: "desc" });
   return {
     props: {
       movies,

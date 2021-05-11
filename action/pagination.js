@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { useSWRPages } from "swr";
 import { useGetMovies } from "action";
 import CardItem from "components/CardItem";
@@ -5,12 +7,21 @@ import CardListItem from "components/CardListItem";
 import { Col } from "react-bootstrap";
 
 export const useGetMoviesPages = ({ movies, filter }) => {
+  useEffect(() => {
+    window.__pagination__init = true;
+  }, []);
+
   return useSWRPages(
     "index-page",
     ({ offset, withSWR }) => {
       let initialData = !offset && movies;
+
+      if (typeof window !== "undefined" && window.__pagination__init) {
+        initialData = null;
+      }
+
       const { data: paginateMovies } = withSWR(
-        useGetMovies({ offset }, initialData)
+        useGetMovies({ offset, filter }, initialData)
       );
 
       if (!paginateMovies) {
