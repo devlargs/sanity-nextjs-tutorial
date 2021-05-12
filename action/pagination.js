@@ -31,7 +31,7 @@ export const useGetMoviesPages = ({ movies, filter }) => {
           .fill(0)
           .map((_, i) =>
             !filter.view.list ? (
-              <Col key={i} md="4">
+              <Col key={`${i}-item`} md="4">
                 <CardItemBlank />
               </Col>
             ) : (
@@ -43,7 +43,7 @@ export const useGetMoviesPages = ({ movies, filter }) => {
       }
       return paginateMovies.map((movie) =>
         !filter.view.list ? (
-          <Col key={movie.slug} md="4">
+          <Col key={`${movie.slug}-item`} md="4">
             <CardItem
               title={movie.title}
               popularity={movie.popularity}
@@ -58,7 +58,7 @@ export const useGetMoviesPages = ({ movies, filter }) => {
             />
           </Col>
         ) : (
-          <Col md="10">
+          <Col key={`${movie.slug}-list`} md="10">
             <CardListItem
               title={movie.title}
               popularity={movie.popularity}
@@ -78,7 +78,7 @@ export const useGetMoviesPages = ({ movies, filter }) => {
       if (SWR.data && SWR.data.length === 0) {
         return null;
       }
-      return (index + 1) * 3;
+      return (index + 1) * 6;
     },
     [filter]
   );
