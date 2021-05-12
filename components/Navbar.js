@@ -17,6 +17,7 @@ const MovieNavbar = ({ theme, toggleTheme }) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
+          <button onClick={toggleTheme}>{theme.type}</button>
           <Nav.Link
             as={() => (
               <Link href="/">
@@ -29,7 +30,6 @@ const MovieNavbar = ({ theme, toggleTheme }) => {
               </Link>
             )}
           />
-          <button onClick={toggleTheme}>{theme.type}</button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
