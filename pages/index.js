@@ -2,7 +2,7 @@ import { useState } from "react";
 import AuthorIntro from "components/AuthorIntro";
 import FilteringMenu from "components/FilteringMenu";
 import PageLayout from "components/PageLayout";
-import { getAllMovies } from "lib/api";
+import { getPaginatedMovies } from "lib/api";
 import { Row, Button } from "react-bootstrap";
 import { useGetMoviesPages } from "action/pagination";
 
@@ -46,7 +46,7 @@ export default function Home({ movies }) {
 }
 
 export const getStaticProps = async () => {
-  const movies = await getAllMovies({ offset: 0, releaseDate: "desc" });
+  const movies = await getPaginatedMovies({ offset: 0, releaseDate: "desc" });
   return {
     props: {
       movies,
