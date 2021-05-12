@@ -1,9 +1,14 @@
 import { Navbar, Nav } from "react-bootstrap";
 import Link from "next/link";
 
-const BlogNavbar = () => {
+const MovieNavbar = ({ theme, toggleTheme }) => {
   return (
-    <Navbar className="fj-navbar fj-nav-base" bg="transparent" expand="lg">
+    <Navbar
+      variant={theme.type}
+      className="fj-navbar fj-nav-base"
+      bg="transparent"
+      expand="lg"
+    >
       <Navbar.Brand className="fj-navbar-brand">
         <Link href="/">
           <a style={{ textDecoration: "none" }}>Mock Movie Database</a>
@@ -24,10 +29,11 @@ const BlogNavbar = () => {
               </Link>
             )}
           />
+          <button onClick={toggleTheme}>{theme.type}</button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
 };
 
-export default BlogNavbar;
+export default MovieNavbar;
