@@ -1,5 +1,6 @@
 import { Navbar, Nav } from "react-bootstrap";
 import Link from "next/link";
+import ThemeToggle from "components/ThemeToggle";
 
 const MovieNavbar = ({ theme, toggleTheme }) => {
   return (
@@ -16,8 +17,9 @@ const MovieNavbar = ({ theme, toggleTheme }) => {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
+        e
         <Nav className="ml-auto">
-          <button onClick={toggleTheme}>{theme.type}</button>
+          <ThemeToggle onChange={toggleTheme} />
           <Nav.Link
             as={() => (
               <Link href="/">
