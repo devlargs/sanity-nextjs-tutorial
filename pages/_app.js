@@ -5,10 +5,19 @@ import {
   faList,
   faSortNumericDown,
   faSortNumericUp,
+  faSun,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 
 config.autoAddCss = false;
-library.add(faBorderAll, faList, faSortNumericUp, faSortNumericDown);
+library.add(
+  faBorderAll,
+  faList,
+  faSortNumericUp,
+  faSortNumericDown,
+  faSun,
+  faMoon
+);
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "styles/index.scss";
