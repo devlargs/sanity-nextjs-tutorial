@@ -1,70 +1,55 @@
 import { useState } from "react";
 import AuthorIntro from "components/AuthorIntro";
-import CardItem from "components/CardItem";
-import CardListItem from "components/CardListItem";
 import FilteringMenu from "components/FilteringMenu";
 import PageLayout from "components/PageLayout";
-import { getAllMovies } from "lib/api";
-import { Row, Col } from "react-bootstrap";
+import { getPaginatedMovies } from "lib/api";
+import { Row, Button } from "react-bootstrap";
+import { useGetMoviesPages } from "action/pagination";
 
-export default function Home({ movie }) {
+export default function Home({ movies }) {
   const [filter, setFilter] = useState({
     view: { list: 0 },
+    releaseDate: { asc: 0 },
+  });
+
+  const { pages, isLoadingMore, isReachingEnd, loadMore } = useGetMoviesPages({
+    movies,
+    filter,
   });
   return (
     <PageLayout>
-      <div className="movie-detail-page">
-        <AuthorIntro />
-        <FilteringMenu
-          filter={filter}
-          onChange={(option, value) => {
-            setFilter({ ...filter, [option]: value });
-          }}
-        />
-        <hr />
-        <Row className="mb-5">
-          {movie.map((movie) =>
-            !filter.view.list ? (
-              <Col key={movie.slug} md="4">
-                <CardItem
-                  title={movie.title}
-                  popularity={movie.popularity}
-                  image={movie.poster}
-                  date={movie.releaseDate}
-                  director={movie.director}
-                  overview={movie.overview}
-                  link={{
-                    href: "/movie/[slug]",
-                    as: `/movie/${movie.slug}`,
-                  }}
-                />
-              </Col>
-            ) : (
-              <Col md="10">
-                <CardListItem
-                  title={movie.title}
-                  popularity={movie.popularity}
-                  date={movie.releaseDate}
-                  director={movie.director}
-                  link={{
-                    href: "/movie/[slug]",
-                    as: `/movie/${movie.slug}`,
-                  }}
-                />
-              </Col>
-            )
-          )}
-        </Row>
+      <AuthorIntro />
+      <FilteringMenu
+        filter={filter}
+        onChange={(option, value) => {
+          setFilter({ ...filter, [option]: value });
+        }}
+      />
+      <hr />
+      <div style={{ textAlign: "center" }}>
+        <Row className="mb-5">{pages}</Row>
+        <Button
+          variant="secondary"
+          size="lg"
+          onClick={loadMore}
+          disabled={isReachingEnd || isLoadingMore}
+        >
+          {isLoadingMore
+            ? "..."
+            : isReachingEnd
+            ? "No more movies"
+            : "More Movies"}
+        </Button>
       </div>
     </PageLayout>
   );
 }
 
 export const getStaticProps = async () => {
-  const movie = await getAllMovies();
+  const movies = await getPaginatedMovies({ offset: 0, releaseDate: "desc" });
   return {
     props: {
-      movie,
+      movies,
     },
   };
 };
