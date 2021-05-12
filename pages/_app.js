@@ -14,6 +14,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import "styles/index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "highlight.js/styles/vs2015.css";
+import "react-toggle/style.css";
 
 const App = ({ Component, pageProps }) => (
   <ThemeProvider>
