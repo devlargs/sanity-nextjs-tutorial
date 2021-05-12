@@ -14,7 +14,7 @@ const CardItem = ({
 }) => {
   return (
     <Card className={`fj-card ${mode}`}>
-      <div className="card-body-wrapper">
+      <div className={`card-body-wrapper ${image ? "no-image" : ""}`}>
         <Card.Header className="d-flex flex-row">
           <img
             src={director?.image || "https://via.placeholder.com/150"}
@@ -52,11 +52,13 @@ const CardItem = ({
           {mode === "placeholder" ? (
             <div className="image-placeholder" />
           ) : (
-            <Card.Img
-              className="movie-image"
-              src={urlFor(image).height(700).crop("center").fit("clip").url()}
-              alt="Card image cap"
-            />
+            image && (
+              <Card.Img
+                className="movie-image"
+                src={urlFor(image).height(700).crop("center").fit("clip").url()}
+                alt="Card image cap"
+              />
+            )
           )}
         </div>
         <Card.Body>

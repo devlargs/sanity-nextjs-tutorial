@@ -17,7 +17,7 @@ const MovieDetail = ({ movie }) => {
             date={movie.releaseDate}
           />
           <hr />
-          <MovieContent content={movie.overview} />
+          {movie.overview && <MovieContent content={movie.overview} />}
         </Col>
       </Row>
     </PageLayout>
